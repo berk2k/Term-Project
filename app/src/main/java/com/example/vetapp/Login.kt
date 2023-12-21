@@ -10,15 +10,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+
 
 class Login : AppCompatActivity() {
     private lateinit var editTextEmail: TextInputEditText
     private lateinit var editTextPassword: TextInputEditText
     private lateinit var buttonLogin: Button
-    private lateinit var auth: FirebaseAuth
+//    private lateinit var auth: FirebaseAuth
     private lateinit var proggressBar: ProgressBar
     private lateinit var registerNow: TextView
 
@@ -26,17 +24,17 @@ class Login : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
+      /*  val currentUser = auth.currentUser
         if (currentUser != null) {
             val intent = Intent(this@Login, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }
+        }*/
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        auth = Firebase.auth
+     //   auth = Firebase.auth
         editTextEmail = findViewById(R.id.email)
         editTextPassword = findViewById(R.id.password)
         buttonLogin = findViewById(R.id.btn_login)
@@ -45,10 +43,15 @@ class Login : AppCompatActivity() {
 
 
         registerNow.setOnClickListener {
-            val intent = Intent(this@Login, Register::class.java)
-            startActivity(intent)
-            finish()
+            try {
+                val intent = Intent(this@Login, Register::class.java)
+                startActivity(intent)
+                finish()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
+
         buttonLogin.setOnClickListener {
             proggressBar.visibility = View.VISIBLE
             var email: String
@@ -67,7 +70,7 @@ class Login : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.signInWithEmailAndPassword(email, password)
+        /*    auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     proggressBar.visibility = View.GONE
                     if (task.isSuccessful) {
@@ -83,7 +86,7 @@ class Login : AppCompatActivity() {
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                }
+                }*/
         }
     }
 }

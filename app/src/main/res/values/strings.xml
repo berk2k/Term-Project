@@ -7,4 +7,17 @@
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">Click to register</string>
     <string name="logout">Logout</string>
+    <string name="pet_name">Pet Name</string>
+    <string name="pet_age">Pet Age</string>
+    <string name="add_pet">Add Pet</string>
+
+    <string-array name="pet_types">
+        <item>Dog</item>
+        <item>Cat</item>
+    </string-array>
+
+    <string-array name="pet_gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
 </resources>
