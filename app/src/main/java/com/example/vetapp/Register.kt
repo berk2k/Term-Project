@@ -176,6 +176,7 @@ class Register : AppCompatActivity() {
             return
         }
 
+        //
         val newUser = User(username = email,"Berk", password = password,"Admin")
 
         val call = apiService.registerUser(newUser)
