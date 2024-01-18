@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainPageFragment"
+        android:title="Main Page"
+        android:icon="@drawable/home" />
+
+    <item
+        android:id="@+id/menu_item2"
+        android:title="@string/vaccination_history"
+        android:icon="@drawable/vaccine" />
+
+    <item
+        android:id="@+id/bookAppointmentFragment"
+        android:title="@string/book_appointment"
+        android:icon="@drawable/appointment" />
+
+    <item
+        android:id="@+id/userFragment"
+        android:title="@string/profile"
+        android:icon="@drawable/user" />
+    <!-- Add more items as needed -->
+
+
+</menu>
