@@ -1,10 +1,13 @@
 # Term-Project
 
-For our 1'st iteration,
+# For our 1'st iteration,
 
-For Mobile part,
+# For Mobile part,
 
 You can see the project located in dev branch FinalAndroid.zip
-If you want to check the codes, you can check the source files.
 
-For backend part, you can see the code located at master branch in TermProjectBackend
+If you want to check the codes, you can check the source files in Android source code.
+
+# For backend part, 
+
+You can see the code located at master branch in TermProjectBackend.
