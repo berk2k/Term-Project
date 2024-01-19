@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.vetapp.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.example.vetapp.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/action_mainPageFragment_to_addPetFragment"
+            app:destination="@id/addPetFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPetFragment"
+        android:name="com.example.vetapp.AddPetFragment"
+        android:label="AddPetFragment" >
+        <action
+            android:id="@+id/action_addPetFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_addPetFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_addPetFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+        <action
+            android:id="@+id/action_addPetFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+
+        <action
+            android:id="@+id/action_addPetFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.vetapp.UserFragment"
+        android:label="UserFragment" >
+        <action
+            android:id="@+id/action_userFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookAppointmentFragment"
+        android:name="com.example.vetapp.BookAppointmentFragment"
+        android:label="fragment_book_appointment"
+        tools:layout="@layout/fragment_book_appointment" >
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.vetapp.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinationHistoryFragment"
+        android:name="com.example.vetapp.VaccinationHistoryFragment"
+        android:label="fragment_vaccination_history"
+        tools:layout="@layout/fragment_vaccination_history" >
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/treatmentReviewFragment"
+        android:name="com.example.vetapp.TreatmentReviewFragment"
+        android:label="fragment_treatment_review"
+        tools:layout="@layout/fragment_treatment_review" >
+        <action
+            android:id="@+id/action_treatmentReviewFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_treatmentReviewFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_treatmentReviewFragment_to_petDetailFragment"
+            app:destination="@id/petDetailFragment" />
+        <action
+            android:id="@+id/action_treatmentReviewFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+        <action
+            android:id="@+id/action_treatmentReviewFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/petDetailFragment"
+        android:name="com.example.vetapp.PetDetailFragment"
+        android:label="fragment_pet_detail"
+        tools:layout="@layout/fragment_pet_detail" >
+        <action
+            android:id="@+id/action_petDetailFragment_to_treatmentReviewFragment"
+            app:destination="@id/treatmentReviewFragment" />
+        <action
+            android:id="@+id/action_petDetailFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
+        <action
+            android:id="@+id/action_petDetailFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
+        <action
+            android:id="@+id/action_petDetailFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_petDetailFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+    </fragment>
+</navigation>
