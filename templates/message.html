@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Message to Customer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/static/logo.png" alt="VetSoft" width="50" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/appointments">Appointments</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/message">Send Message to Customer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/stock">Check Stock</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/staff">Staff Management</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1>Send Message to Customer</h1>
+        <form id="messageForm">
+          <div class="form-group mt-3">
+            <label for="customerSelect">Select Customer:</label>
+            <select class="form-control" id="customerSelect" name="customer">
+              <option value="">Select a customer</option>
+            </select>
+          </div>
+          <div class="form-group mt-3">
+            <label for="messageTextarea">Message:</label>
+            <textarea class="form-control" id="messageTextarea" rows="3" placeholder="Enter your message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Fetch user data from Flask backend
+      $.get('/get_users', function (data) {
+        // Populate the select element with the retrieved user data
+        var select = $('#customerSelect');
+        $.each(data, function (index, user) {
+          select.append('<option value="' + user + '">' + user + '</option>');
+        });
+      });
+    });
+    // Listen for form submission
+    document.getElementById('messageForm').addEventListener('submit', function (event) {
+      // Prevent the default form submission behavior
+
+      event.preventDefault();
+
+      // Get the username and message from the form
+      var username = document.getElementById('customerSelect').value;
+      var message = document.getElementById('messageTextarea').value;
+      console.log('message:', message);
+      console.log('username:', username);
+      var apiUrl = 'https://localhost:7001/api/UserProfile/GetUserIdByUserName?userName=' + encodeURIComponent(username);
+      fetch(apiUrl, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          console.log('Response:', response); 
+          if (response.ok) {
+            return response.clone().json(); // Clone the response and parse as JSON
+          } else {
+            throw new Error('Failed to fetch user ID');
+          }
+        })
+        .then(data => {
+          console.log('User ID:', data); 
+          var sendNotificationUrl = 'https://localhost:7001/api/Notification/SendNotification';
+          var notificationData = {
+            userId: data,
+            message: message 
+          };
+          fetch(sendNotificationUrl, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(notificationData)
+          })
+            .then(notificationResponse => {
+              if (notificationResponse.ok) {
+                console.log('Notification sent successfully.');
+                alert('Message sent successfully.');
+                // Handle success, if needed
+              } else {
+                throw new Error('Failed to send notification.');
+              }
+            })
+            .catch(notificationError => {
+              console.error('Error sending notification:', notificationError);
+            });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
