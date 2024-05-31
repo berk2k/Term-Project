@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvAppointmentDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appointment Date and Time"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvClientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client Name"
+        android:textSize="16sp"
+        android:textColor="@color/dark_gray"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvPetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Name"
+        android:textSize="16sp"
+        android:textColor="@color/dark_gray"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvReasons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reasons"
+        android:textSize="16sp"
+        android:textColor="@color/dark_gray"/>
+
+</LinearLayout>

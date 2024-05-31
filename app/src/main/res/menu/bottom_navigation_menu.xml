@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainPageFragment"
+        android:title="Main Page"
+        android:icon="@drawable/home" />
+
+
+
+    <item
+        android:id="@+id/appointmentsFragment"
+        android:title="@string/appointments"
+        android:icon="@drawable/appointment" />
+
+
+
+    <item
+        android:id="@+id/treatmentReviewFragment"
+        android:title="@string/treatment_review"
+        android:icon="@drawable/treatmentreview" />
+    <item
+        android:id="@+id/petDetailFragment"
+        android:title="@string/pet_detail"
+        android:icon="@drawable/pet" />
+
+    <item
+        android:id="@+id/notificationFragment"
+        android:title="@string/notifications"
+        android:icon="@drawable/notification" />
+    <!-- Add more items as needed -->
+</menu>

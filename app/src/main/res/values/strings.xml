@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Vet App</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="click_to_register">Click to register</string>
+    <string name="logout">Logout</string>
+    <string name="pet_name">Pet Name</string>
+    <string name="pet_age">Pet Age</string>
+    <string name="add_pet">Add Pet</string>
+    <string name="profile">Profile</string>
+    <string name="vaccination_history">Vaccination History</string>
+    <string name="notifications">Notifications</string>
+
+    <string-array name="pet_types">
+        <item>Dog</item>
+        <item>Cat</item>
+    </string-array>
+
+    <string-array name="pet_gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="species">Species</string>
+    <string name="breed">Breed</string>
+    <string name="color">Color</string>
+    <string name="gender">Gender</string>
+    <string name="weight">Weight</string>
+    <string name="allergies">Allergies</string>
+    <string name="treatment_review">Treatment Review</string>
+    <string name="pet_detail">Pet Detail</string>
+    <string name="vaccination_detail">Vaccination Detail</string>
+    <string name="appointments">Appointments</string>
+    <string name="send_message">Send Message</string>
+    <string name="username">Username</string>
+</resources>
