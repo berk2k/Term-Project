@@ -1,0 +1,3093 @@
+{
+	"info": {
+		"_postman_id": "906bdab8-4b1d-43fa-8c6d-5b93f8b7b227",
+		"name": "GradProjectTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35285552",
+		"_collection_link": "https://softvet-7716.postman.co/workspace/SoftVet-Workspace~6419ccd0-e7aa-4cbc-8465-fd04b6458301/collection/29035685-906bdab8-4b1d-43fa-8c6d-5b93f8b7b227?action=share&source=collection_link&creator=35285552"
+	},
+	"item": [
+		{
+			"name": "AddPet",
+			"item": [
+				{
+					"name": "Add pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});\r",
+									"/*\r",
+									"pm.test(\"Id is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.id).to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id must be a non-negative integer\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address is a non-empty string\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.address).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Address should not be empty\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Number of people is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.numberofPeople).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Amenities should be an array or a string with comma-separated values\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.amenities).to.satisfy((value) => {\r",
+									"        return Array.isArray(value) || typeof value === 'string';\r",
+									"    }, \"Amenities should be an array or a string with comma-separated values\");\r",
+									"});\r",
+									"*/"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 3,\r\n  \"name\": \"test4\",\r\n  \"species\": \"string\",\r\n  \"breed\": \"string\",\r\n  \"color\": \"string\",\r\n  \"age\": 0,\r\n  \"gender\": \"string\",\r\n  \"weight\": 0,\r\n  \"allergies\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/AddPet/Add",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"AddPet",
+								"Add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "book appointment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});\r",
+									"/*\r",
+									"pm.test(\"Id is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.id).to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id must be a non-negative integer\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address is a non-empty string\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.address).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Address should not be empty\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Number of people is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.numberofPeople).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Amenities should be an array or a string with comma-separated values\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.amenities).to.satisfy((value) => {\r",
+									"        return Array.isArray(value) || typeof value === 'string';\r",
+									"    }, \"Amenities should be an array or a string with comma-separated values\");\r",
+									"});\r",
+									"*/"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 3,\r\n  \"appointmentDateTime\": \"2024-05-28T07:05:04.877Z\",\r\n  \"petName\": \"string\",\r\n  \"reasons\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/BookAppointment",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"BookAppointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AppointmentUpdate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});\r",
+									"/*\r",
+									"pm.test(\"Id is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.id).to.be.a('number').and.to.satisfy((id) => id >= 0, \"Id must be a non-negative integer\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Address is a non-empty string\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.address).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Address should not be empty\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Number of people is a non-negative integer\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.numberofPeople).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Amenities should be an array or a string with comma-separated values\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.amenities).to.satisfy((value) => {\r",
+									"        return Array.isArray(value) || typeof value === 'string';\r",
+									"    }, \"Amenities should be an array or a string with comma-separated values\");\r",
+									"});\r",
+									"*/"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 4,\r\n  \"appointmentDateTime\": \"2024-05-28T07:05:33.275Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/Update",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AppointmentDelete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if appointment deleted successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Appointment deleted successfully.\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/Delete?id=4",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All App",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Appointment data is present\", function () {\r",
+									"    pm.expect(responseData.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each appointment has required fields\", function () {\r",
+									"    responseData.forEach(function (appointment) {\r",
+									"        pm.expect(appointment).to.have.property('appointmentId');\r",
+									"        pm.expect(appointment).to.have.property('clientID');\r",
+									"        pm.expect(appointment).to.have.property('appointmentDateTime');\r",
+									"        pm.expect(appointment).to.have.property('clientName');\r",
+									"        pm.expect(appointment).to.have.property('petName');\r",
+									"        pm.expect(appointment).to.have.property('reasons');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/GetAllAppointments?page=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"GetAllAppointments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Appointment data is present\", function () {\r",
+									"    pm.expect(responseData.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each appointment has required fields\", function () {\r",
+									"    responseData.forEach(function (appointment) {\r",
+									"        pm.expect(appointment).to.have.property('id');\r",
+									"        pm.expect(appointment).to.have.property('appointmentDateTime');\r",
+									"        pm.expect(appointment).to.have.property('petName');\r",
+									"        pm.expect(appointment).to.have.property('reasons');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/GetUserAppointments?page=1&userId=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"GetUserAppointments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user app no page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Appointment data is present\", function () {\r",
+									"    pm.expect(responseData.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Each appointment has required fields\", function () {\r",
+									"    responseData.forEach(function (appointment) {\r",
+									"        pm.expect(appointment).to.have.property('id');\r",
+									"        pm.expect(appointment).to.have.property('appointmentDateTime');\r",
+									"        pm.expect(appointment).to.have.property('petName');\r",
+									"        pm.expect(appointment).to.have.property('reasons');\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Appointment/GetUserAppointmentsWOPagination?userId=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Appointment",
+								"GetUserAppointmentsWOPagination"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetPet",
+			"item": [
+				{
+					"name": "get pet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test if response is an array\r",
+									"pm.test(\"Response is an array\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"// Test if each pet object has the required fields\r",
+									"pm.test(\"Each pet has required fields\", function() {\r",
+									"    responseData.forEach(function (pet) {\r",
+									"        pm.expect(pet).to.have.property('petId');\r",
+									"        pm.expect(pet).to.have.property('name');\r",
+									"        pm.expect(pet).to.have.property('species');\r",
+									"        pm.expect(pet).to.have.property('breed');\r",
+									"        pm.expect(pet).to.have.property('age');\r",
+									"        pm.expect(pet).to.have.property('gender');\r",
+									"        pm.expect(pet).to.have.property('weight');\r",
+									"        pm.expect(pet).to.have.property('allergies');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test if pet names are unique\r",
+									"pm.test(\"Pet names are unique\", function() {\r",
+									"    const petNames = responseData.map(pet => pet.name);\r",
+									"    const uniqueNames = new Set(petNames);\r",
+									"    pm.expect(uniqueNames.size).to.eql(petNames.length);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/GetPet/3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"GetPet",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get petname by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present and has value 'application/json'\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/GetPet/GetPetNameById?id=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"GetPet",
+								"GetPetNameById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"    pm.expect(responseData.result).to.have.property('apiUser');\r",
+									"    pm.expect(responseData.result).to.have.property('token');\r",
+									"    pm.expect(responseData.result).to.have.property('userId');\r",
+									"});\r",
+									"\r",
+									"// Test for values in the response\r",
+									"pm.test(\"Values in the response are correct\", function() {\r",
+									"    pm.expect(responseData.statusCode).to.eql(200);\r",
+									"    pm.expect(responseData.status).to.eql(\"SUCCESS\");\r",
+									"    pm.expect(responseData.isSuccess).to.eql(true);\r",
+									"    pm.expect(responseData.errorMessage).to.eql(null);\r",
+									"    pm.expect(responseData.result.apiUser.id).to.eql(3);\r",
+									"    pm.expect(responseData.result.apiUser.userName).to.eql(\"Tester1\");\r",
+									"    pm.expect(responseData.result.apiUser.name).to.eql(\"Tester1\");\r",
+									"    pm.expect(responseData.result.apiUser.password).to.eql(\"password\");\r",
+									"    pm.expect(responseData.result.apiUser.role).to.eql(\"Admin\");\r",
+									"    pm.expect(responseData.result.token).to.not.be.empty;\r",
+									"    pm.expect(responseData.result.userId).to.eql(3);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Tester1\",\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Login/login",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Login",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginstaff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Login/LoginForStaff",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Login",
+								"LoginForStaff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "messageToVet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 3,\r\n  \"messageText\": \"string\",\r\n  \"messageTitle\": \"string\",\r\n  \"sentAt\": \"2024-05-29T03:08:17.623Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Notification/SendMessageFromUserToVet",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Notification",
+								"SendMessageFromUserToVet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send not",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 3,\r\n  \"message\": \"string\",\r\n  \"sentAt\": \"2024-05-29T03:06:33.161Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Notification/SendNotification",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Notification",
+								"SendNotification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotHistoryUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message).to.have.property('userId');\r",
+									"        pm.expect(message).to.have.property('message');\r",
+									"        pm.expect(message).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for message format\r",
+									"pm.test(\"Messages have the correct format\", function() {\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message.userId).to.be.a('number');\r",
+									"        pm.expect(message.message).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(message.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Notification/GetNotificationHistoryForUser?page=1&userId=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Notification",
+								"GetNotificationHistoryForUser"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotHistoryVet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message).to.have.property('userId');\r",
+									"        pm.expect(message).to.have.property('messageText');\r",
+									"        pm.expect(message).to.have.property('messageTitle');\r",
+									"        pm.expect(message).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for message format\r",
+									"pm.test(\"Messages have the correct format\", function() {\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message.userId).to.be.a('number');\r",
+									"        pm.expect(message.messageText).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(message.messageTitle).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(message.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Notification/GetNotificationHistoryForVet?userId=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Notification",
+								"GetNotificationHistoryForVet"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "without pagination",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message).to.have.property('userId');\r",
+									"        pm.expect(message).to.have.property('message');\r",
+									"        pm.expect(message).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for message format\r",
+									"pm.test(\"Messages have the correct format\", function() {\r",
+									"    responseData.forEach(function (message) {\r",
+									"        pm.expect(message.userId).to.be.a('number');\r",
+									"        pm.expect(message.message).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(message.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Notification/GetNotificationHistoryForUserWOPagination?userId=3",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Notification",
+								"GetNotificationHistoryForUserWOPagination"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Testuser2\",\r\n  \"name\": \"Testuser1\",\r\n  \"password\": \"password\",\r\n  \"role\": \"Vet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Register/register",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Register",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "send review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 3,\r\n  \"petId\": 6,\r\n  \"message\": \"Review Text\",\r\n  \"sentAt\": \"2024-05-29T03:27:33.578Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Review/SendReview",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Review",
+								"SendReview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReviews",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review).to.have.property('reviewId');\r",
+									"        pm.expect(review).to.have.property('userId');\r",
+									"        pm.expect(review).to.have.property('petId');\r",
+									"        pm.expect(review).to.have.property('message');\r",
+									"        pm.expect(review).to.have.property('userName');\r",
+									"        pm.expect(review).to.have.property('petName');\r",
+									"        pm.expect(review).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for review format\r",
+									"pm.test(\"Reviews have the correct format\", function() {\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review.reviewId).to.be.a('number');\r",
+									"        pm.expect(review.userId).to.be.a('number');\r",
+									"        pm.expect(review.petId).to.be.a('number');\r",
+									"        pm.expect(review.message).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(review.userName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(review.petName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(review.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Review/GetAllReviews?page=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Review",
+								"GetAllReviews"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reviewHistoryUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review).to.have.property('userId');\r",
+									"        pm.expect(review).to.have.property('petId');\r",
+									"        pm.expect(review).to.have.property('message');\r",
+									"        pm.expect(review).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for review format\r",
+									"pm.test(\"Reviews have the correct format\", function() {\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review.userId).to.be.a('number');\r",
+									"        pm.expect(review.petId).to.be.a('number');\r",
+									"        pm.expect(review.message).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(review.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Review/GetReviewsHistoryForUser?page=1&userId=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Review",
+								"GetReviewsHistoryForUser"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "without pagination",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review).to.have.property('userId');\r",
+									"        pm.expect(review).to.have.property('petId');\r",
+									"        pm.expect(review).to.have.property('message');\r",
+									"        pm.expect(review).to.have.property('sentAt');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for review format\r",
+									"pm.test(\"Reviews have the correct format\", function() {\r",
+									"    responseData.forEach(function (review) {\r",
+									"        pm.expect(review.userId).to.be.a('number');\r",
+									"        pm.expect(review.petId).to.be.a('number');\r",
+									"        pm.expect(review.message).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(review.sentAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Review/GetReviewsHistoryForUserWOPagination?userId=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Review",
+								"GetReviewsHistoryForUserWOPagination"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock",
+			"item": [
+				{
+					"name": "add item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"itemName\": \"Stethoscope \",\r\n  \"count\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Stock/AddItem",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Stock",
+								"AddItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 6,\r\n  \"itemName\": \"Stethoscope\",\r\n  \"count\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Stock/update",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Stock",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item).to.have.property('id');\r",
+									"        pm.expect(item).to.have.property('medicine_name');\r",
+									"        pm.expect(item).to.have.property('count');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for item format\r",
+									"pm.test(\"Items have the correct format\", function() {\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item.id).to.be.a('number');\r",
+									"        pm.expect(item.medicine_name).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(item.count).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Stock/GetAllItems?page=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Stock",
+								"GetAllItems"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "item by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item).to.have.property('id');\r",
+									"        pm.expect(item).to.have.property('medicine_name');\r",
+									"        pm.expect(item).to.have.property('count');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for item format\r",
+									"pm.test(\"Items have the correct format\", function() {\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item.id).to.be.a('number');\r",
+									"        pm.expect(item.medicine_name).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(item.count).to.be.a('number');\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Stock/GetItemByName?medicineName=medicine",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Stock",
+								"GetItemByName"
+							],
+							"query": [
+								{
+									"key": "medicineName",
+									"value": "medicine"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "itemWZero",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item).to.have.property('id');\r",
+									"        pm.expect(item).to.have.property('medicine_name');\r",
+									"        pm.expect(item).to.have.property('count');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for item format\r",
+									"pm.test(\"Items have the correct format\", function() {\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item.id).to.be.a('number');\r",
+									"        pm.expect(item.medicine_name).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(item.count).to.be.eq(0);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/Stock/GetItemsWithZeroCount",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Stock",
+								"GetItemsWithZeroCount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserProfile",
+			"item": [
+				{
+					"name": "user info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/UserProfile/GetUserIdByUserName?userName=Testuser1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"UserProfile",
+								"GetUserIdByUserName"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "Testuser1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body is an array\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"// Test for item format\r",
+									"pm.test(\"Items in the array are strings\", function() {\r",
+									"    responseData.forEach(function (item) {\r",
+									"        pm.expect(item).to.be.a('string').and.not.be.empty;\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/UserProfile/GetAllUsers",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"UserProfile",
+								"GetAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userid by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/UserProfile/GetUserIdByUserName",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"UserProfile",
+								"GetUserIdByUserName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test for message content\r",
+									"pm.test(\"Message is 'Customer deleted successfully.'\", function() {\r",
+									"    pm.expect(responseData.message).to.eql(\"Customer deleted successfully.\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/UserProfile/Delete",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"UserProfile",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VaccinationRecord",
+			"item": [
+				{
+					"name": "vacc record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 3,\r\n  \"petId\": 6,\r\n  \"petName\": \"string\",\r\n  \"vaccine_name\": \"string\",\r\n  \"vaccine_date\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VaccinationRecord/AddVaccinationRecord",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VaccinationRecord",
+								"AddVaccinationRecord"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vacc record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if report  deleted successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Report deleted successfully.\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VaccinationRecord/Delete?id=100",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VaccinationRecord",
+								"Delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vacc history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (entry) {\r",
+									"        pm.expect(entry).to.have.property('petName');\r",
+									"        pm.expect(entry).to.have.property('vaccineName');\r",
+									"        pm.expect(entry).to.have.property('date');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for entry format\r",
+									"pm.test(\"Entries have the correct format\", function() {\r",
+									"    responseData.forEach(function (entry) {\r",
+									"        pm.expect(entry.petName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(entry.vaccineName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(entry.date).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+Z$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VaccinationRecord/GetAllVaccinationHistoryForUser?page=1&id=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VaccinationRecord",
+								"GetAllVaccinationHistoryForUser"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "without pagination",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (entry) {\r",
+									"        pm.expect(entry).to.have.property('petName');\r",
+									"        pm.expect(entry).to.have.property('vaccineName');\r",
+									"        pm.expect(entry).to.have.property('date');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for entry format\r",
+									"pm.test(\"Entries have the correct format\", function() {\r",
+									"    responseData.forEach(function (entry) {\r",
+									"        pm.expect(entry.petName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(entry.vaccineName).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(entry.date).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d+Z$/);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VaccinationRecord/GetAllVaccinationHistoryForUserWOPagination?id=1",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VaccinationRecord",
+								"GetAllVaccinationHistoryForUserWOPagination"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VetStaff",
+			"item": [
+				{
+					"name": "create staff",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Postman1\",\r\n  \"name\": \"Postman1\",\r\n  \"password\": \"string\",\r\n  \"role\": \"Vet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VetStaff/CreateStaff",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VetStaff",
+								"CreateStaff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if staff deleted successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Staff deleted successfully.\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VetStaff/DeleteStaff",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VetStaff",
+								"DeleteStaff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json;\r",
+									"\r",
+									"pm.test(\"Successful, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", () => {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"statusCode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"status\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"isSuccess\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"errorMessage\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"result\"); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData).to.have.property('statusCode');\r",
+									"    pm.expect(responseData).to.have.property('status');\r",
+									"    pm.expect(responseData).to.have.property('isSuccess');\r",
+									"    pm.expect(responseData).to.have.property('errorMessage');\r",
+									"    pm.expect(responseData).to.have.property('result');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 5,\r\n  \"name\": \"Postman\",\r\n  \"password\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VetStaff/Update",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VetStaff",
+								"Update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all vet staff",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();\r",
+									"\r",
+									"// Test for successful response status\r",
+									"pm.test(\"Successful response, Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test for response time\r",
+									"pm.test(\"Response time is less than 400ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type header\r",
+									"pm.test(\"Content-Type header is present\", function() {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"// Test for Content-Type value\r",
+									"pm.test(\"Content-Type header is application/json\", function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"// Test for response body structure\r",
+									"pm.test(\"Response body has expected structure\", function() {\r",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+									"    responseData.forEach(function (staff) {\r",
+									"        pm.expect(staff).to.have.property('staffId');\r",
+									"        pm.expect(staff).to.have.property('email');\r",
+									"        pm.expect(staff).to.have.property('name');\r",
+									"        pm.expect(staff).to.have.property('role');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// Test for staff format\r",
+									"pm.test(\"Staff members have the correct format\", function() {\r",
+									"    responseData.forEach(function (staff) {\r",
+									"        pm.expect(staff.staffId).to.be.a('number');\r",
+									"        pm.expect(staff.email).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(staff.name).to.be.a('string').and.not.be.empty;\r",
+									"        pm.expect(staff.role).to.be.oneOf(['Admin', 'Vet', 'Intern','Staff']);\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://termprojectbackend.azurewebsites.net/api/VetStaff/GetAllVetStaff",
+							"protocol": "https",
+							"host": [
+								"termprojectbackend",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"VetStaff",
+								"GetAllVetStaff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
